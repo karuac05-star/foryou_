@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untukmu Sayang</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            height: 100vh;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(144, 238, 144, 0.4), rgba(34, 139, 34, 0.5));
+            border-radius: 50% 50% 0 0 / 20px 20px 0 0;
+        }
+
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            background-image: repeating-linear-gradient(90deg, #4CAF50 0px, #4CAF50 10px, #66BB6A 10px, #66BB6A 20px);
+        }
+
+        .character-box {
+            position: absolute;
+            bottom: 150px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .photo-frame {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 5px solid #FFD700;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5), 0 0 0 3px white;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cute-char {
+            width: 120px;
+            height: 180px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .head {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FFE5CC 0%, #FFD7BA 100%);
+            border-radius: 50%;
+            border: 3px solid #8B4513;
+            position: absolute;
+            top: 0;
+            left: 25px;
+            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .hair-boy {
+            width: 80px;
+            height: 45px;
+            background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+            border-radius: 50% 50% 30% 30%;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        .hair-girl {
+            width: 85px;
+            height: 55px;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            top: -15px;
+            left: 17px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        .hair-girl::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 35px;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            border-radius: 50%;
+            top: 15px;
+            left: -8px;
+        }
+
+        .hair-girl::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 35px;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            border-radius: 50%;
+            top: 15px;
+            right: -8px;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 25px;
+            width: 100%;
+        }
+
+        .eye {
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+        }
+
+        .eye::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+
+        .eye.left {
+            left: 18px;
+        }
+
+        .eye.right {
+            right: 18px;
+        }
+
+        .blush {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background: rgba(255, 182, 193, 0.6);
+            border-radius: 50%;
+            top: 35px;
+        }
+
+        .blush.left {
+            left: 8px;
+        }
+
+        .blush.right {
+            right: 8px;
+        }
+
+        .smile {
+            width: 30px;
+            height: 18px;
+            border: 3px solid #8B4513;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            position: absolute;
+            top: 45px;
+            left: 20px;
+            background: rgba(255, 192, 203, 0.3);
+        }
+
+        .body-boy {
+            width: 60px;
+            height: 70px;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            border-radius: 20px 20px 10px 10px;
+            position: absolute;
+            top: 70px;
+            left: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .body-girl {
+            width: 65px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            border-radius: 20px 20px 35px 35px;
+            position: absolute;
+            top: 70px;
+            left: 27px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .body-girl::before {
+            content: '🎀';
+            position: absolute;
+            font-size: 20px;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .arm {
+            width: 18px;
+            height: 50px;
+            border-radius: 10px;
+            position: absolute;
+            top: 75px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .boy-box .arm {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .girl-box .arm {
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+        }
+
+        .boy-box .arm {
+            animation: wave 0.6s infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(-20deg); }
+            50% { transform: rotate(20deg); }
+        }
+
+        .arm.left {
+            left: 15px;
+            transform-origin: top;
+        }
+
+        .arm.right {
+            right: 15px;
+            transform-origin: top;
+        }
+
+        .leg {
+            width: 20px;
+            height: 45px;
+            border-radius: 10px;
+            position: absolute;
+            top: 135px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .boy-box .leg {
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+        }
+
+        .girl-box .leg {
+            background: linear-gradient(135deg, #EC407A 0%, #C2185B 100%);
+        }
+
+        .boy-box .leg {
+            animation: run-leg 0.5s infinite;
+        }
+
+        @keyframes run-leg {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        .leg.left {
+            left: 28px;
+            transform-origin: top;
+        }
+
+        .leg.right {
+            right: 28px;
+            transform-origin: top;
+            animation-delay: 0.25s;
+        }
+
+        .boy-box {
+            left: -200px;
+            animation: boy-run 15s ease-out forwards;
+        }
+
+        @keyframes boy-run {
+            0% { left: -200px; }
+            100% { left: calc(50% - 200px); }
+        }
+
+        .girl-box {
+            right: calc(50% - 200px);
+        }
+
+        .items {
+            position: absolute;
+            bottom: 280px;
+            left: -200px;
+            font-size: 55px;
+            animation: items-follow 15s ease-out forwards;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        @keyframes items-follow {
+            0% { left: -200px; opacity: 0; }
+            10% { opacity: 1; }
+            100% { left: calc(50% - 250px); opacity: 1; }
+        }
+
+        .message-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+            padding: 50px;
+            border-radius: 40px;
+            color: #333;
+            text-align: center;
+            max-width: 650px;
+            width: 85%;
+            opacity: 0;
+            animation: message-pop 1s ease forwards;
+            animation-delay: 16s;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+            border: 4px solid #FFD700;
+        }
+
+        @keyframes message-pop {
+            to { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .message-box h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #FF1493, #FFD700, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes rainbow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        .message-box p {
+            font-size: 1.4em;
+            line-height: 1.9;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        .highlight {
+            color: #FF1493;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .final-words {
+            font-size: 2.2em !important;
+            margin-top: 40px !important;
+            background: linear-gradient(135deg, #FF1493, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20% { transform: scale(1.05); }
+        }
+
+        .hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            animation: show-hearts 1s forwards;
+            animation-delay: 16.5s;
+        }
+
+        @keyframes show-hearts {
+            to { opacity: 1; }
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 40px;
+            animation: float-up 7s infinite;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; transform: translateY(90vh) rotate(45deg) scale(1); }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .message-box {
+                padding: 30px 20px;
+            }
+            .message-box h1 {
+                font-size: 2em;
+            }
+            .message-box p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="ground">
+        <div class="grass"></div>
+    </div>
+
+    <div class="character-box boy-box">
+        <div class="photo-frame">
+            <img id="fotoKamu" src="" alt="Foto Kamu">
+        </div>
+        <div class="cute-char">
+            <div class="hair-boy"></div>
+            <div class="head">
+                <div class="eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+                <div class="smile"></div>
+            </div>
+            <div class="body-boy"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+        </div>
+    </div>
+
+    <div class="items">💐💍</div>
+
+    <div class="character-box girl-box">
+        <div class="photo-frame">
+            <img id="fotoPacar" src="" alt="Foto Pacar">
+        </div>
+        <div class="cute-char">
+            <div class="hair-girl"></div>
+            <div class="head">
+                <div class="eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+                <div class="smile"></div>
+            </div>
+            <div class="body-girl"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <h1>Untuk Ceweku Tercinta 💖</h1>
+        <p>Tau gak? Aku rela lari sejauh apapun kalau ujungnya bisa ketemu tuan putriku tercinta ini...</p>
+        <p>Soalnya <span class="highlight">kamu itu alasan aku bisa senyum-senyum sendiri</span> tiap hari 😊</p>
+        <p>Bunga ini buat kamu, karena...</p>
+        <p><span class="highlight">Hidup aku jadi berwarna semenjak ada tuan putri karin tercinta</span> 🌸</p>
+        <p>Dan cincin ini... aku pengen bilang...</p>
+        <p><span class="highlight">Aku janji bakal selalu ada, jaga kamu, dan bikin kamu bahagia terus</span> ✨</p>
+        <p>Kamu tau kan? Kamu bukan cuma pacar aku...</p>
+        <p><span class="highlight">Kamu rumah aku, masa depan aku, my future wife, literally everything!</span></p>
+        <p class="final-words">I Love You More Than Words Can Say! 💕</p>
+    </div>
+
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <script>
+        // ========================================
+        // GANTI LINK FOTO KALIAN DI SINI YA!
+        // ========================================
+        
+        var linkFotoKamu = "IMG_20251218_201255_958.webp";  // <-- FOTO KAMU
+        var linkFotoPacar = "Screenshot_20250212_104923_PUBG MOBILE.jpg"; // <-- FOTO PACAR
+        
+        // ========================================
+        
+        document.getElementById('fotoKamu').src = linkFotoKamu;
+        document.getElementById('fotoPacar').src = linkFotoPacar;
+
+        // Generate stars
+        var starsDiv = document.getElementById('stars');
+        for (var i = 0; i < 60; i++) {
+            var star = document.createElement('div');
+            star.className = 'star';
+            star.textContent = '✨';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsDiv.appendChild(star);
+        }
+
+        // Floating hearts
+        setTimeout(function() {
+            var container = document.getElementById('heartsContainer');
+            setInterval(function() {
+                var heart = document.createElement('div');
+                heart.className = 'heart-float';
+                var hearts = ['💕', '💖', '💗', '💝', '❤️', '💘'];
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heart);
+                setTimeout(function() { heart.remove(); }, 8000);
+            }, 350);
+        }, 16500);
+    </script>
+</body>
+</html>
